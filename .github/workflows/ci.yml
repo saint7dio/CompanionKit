@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-test:
+    name: Build and test (macOS)
+    runs-on: macos-15
+    timeout-minutes: 20
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Report toolchain
+        run: |
+          swift --version
+          xcodebuild -version
+
+      - name: Build debug configuration
+        run: swift build --configuration debug
+
+      - name: Run tests
+        run: swift test --parallel
+
+      - name: Build native app project
+        run: >-
+          xcodebuild
+          -project CompanionKit.xcodeproj
+          -scheme CompanionKit
+          -configuration Debug
+          -destination 'platform=macOS'
+          CODE_SIGNING_ALLOWED=NO
+          build
+
+      - name: Test native app project
+        run: >-
+          xcodebuild
+          -project CompanionKit.xcodeproj
+          -scheme CompanionKit
+          -configuration Debug
+          -destination 'platform=macOS'
+          CODE_SIGNING_ALLOWED=NO
+          test
+
+      - name: Build release configuration
+        run: swift build --configuration release

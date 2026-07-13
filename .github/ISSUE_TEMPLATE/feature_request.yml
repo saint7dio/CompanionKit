@@ -1,0 +1,71 @@
+name: Feature request
+description: Propose a user-facing improvement that fits CompanionKit's principles.
+title: "[Feature]: "
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Describe the user need before a preferred implementation. CompanionKit prioritizes deterministic, local-first, accessible behavior.
+
+  - type: textarea
+    id: need
+    attributes:
+      label: User need
+      description: Who has this problem and what are they trying to accomplish?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed experience
+      description: Explain the visible behavior, including failure or unavailable states.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Include existing macOS behavior or a smaller solution if applicable.
+
+  - type: dropdown
+    id: permissions
+    attributes:
+      label: Would this require a new permission or entitlement?
+      options:
+        - No
+        - Yes
+        - Unsure
+    validations:
+      required: true
+
+  - type: dropdown
+    id: network
+    attributes:
+      label: Would this add network activity, an account, or external service?
+      options:
+        - No
+        - Yes
+        - Unsure
+    validations:
+      required: true
+
+  - type: textarea
+    id: impacts
+    attributes:
+      label: Accessibility, privacy, and security considerations
+      description: Explain impacts, or state why none are expected.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I searched existing issues and the roadmap.
+          required: true
+        - label: I have not included sensitive or personal information.
+          required: true

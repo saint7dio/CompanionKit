@@ -1,0 +1,93 @@
+name: Action integration proposal
+description: Propose a deterministic, allowlisted macOS action.
+title: "[Action]: "
+labels: [action-proposal]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Actions must use public APIs, report real outcomes, and remain understandable and testable. Arbitrary shell commands, user-authored AppleScript, and downloaded execution are out of scope.
+
+  - type: input
+    id: name
+    attributes:
+      label: Action name
+      placeholder: A short, visible user-facing name
+    validations:
+      required: true
+
+  - type: textarea
+    id: use_case
+    attributes:
+      label: User goal
+      description: What everyday task does this simplify, and for whom?
+    validations:
+      required: true
+
+  - type: textarea
+    id: api
+    attributes:
+      label: Proposed public API or system mechanism
+      description: Name the documented macOS framework/API and minimum OS constraints. Links are welcome.
+    validations:
+      required: true
+
+  - type: textarea
+    id: inputs_outputs
+    attributes:
+      label: Inputs, result, and failure modes
+      description: Define validated inputs, observable success, cancellation, unavailability, and errors.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: permission
+    attributes:
+      label: Permission or entitlement
+      options:
+        - None expected
+        - Existing optional permission
+        - New permission or entitlement
+        - Unsure
+    validations:
+      required: true
+
+  - type: dropdown
+    id: risk
+    attributes:
+      label: Proposed risk level
+      options:
+        - Low
+        - Medium
+        - High
+        - Unsure
+    validations:
+      required: true
+
+  - type: textarea
+    id: confirmation
+    attributes:
+      label: Confirmation and safety policy
+      description: Explain whether confirmation is required and how misuse or surprise is prevented.
+    validations:
+      required: true
+
+  - type: textarea
+    id: testing
+    attributes:
+      label: Test strategy and fallbacks
+      description: Describe mocks, availability tests, denied-permission behavior, and safe fallback or disabled state.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Proposal checks
+      options:
+        - label: The action is deterministic and does not execute arbitrary user-provided code.
+          required: true
+        - label: The action can explain unavailability and never simulate success.
+          required: true
+        - label: I considered accessibility, privacy, and security impact.
+          required: true

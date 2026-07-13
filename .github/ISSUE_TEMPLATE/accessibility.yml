@@ -1,0 +1,72 @@
+name: Accessibility issue
+description: Report an access barrier or propose an accessibility improvement.
+title: "[Accessibility]: "
+labels: [accessibility]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting an access barrier. Share only the settings and assistive-technology details you are comfortable making public.
+
+  - type: textarea
+    id: barrier
+    attributes:
+      label: Barrier encountered
+      description: What task was difficult or impossible, and what happened?
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected accessible experience
+      description: Describe the outcome or interaction that would work better.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: context
+    attributes:
+      label: Relevant interaction context
+      description: Select any that apply.
+      options:
+        - label: VoiceOver
+        - label: Keyboard-only navigation
+        - label: Voice Control
+        - label: Switch Control
+        - label: Reduce Motion
+        - label: Increase Contrast or Differentiate Without Color
+        - label: Larger text or display scaling
+        - label: Pointer or dragging interaction
+        - label: Other or not sure
+
+  - type: input
+    id: environment
+    attributes:
+      label: Version and environment
+      description: CompanionKit revision, macOS version, and architecture when known.
+      placeholder: e.g. commit abc1234; macOS 15.4; Apple silicon
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction or task flow
+      description: Provide steps and sanitized supporting information if practical.
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested improvement
+      description: Optional; a clear account of the barrier is already valuable.
+
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy check
+      options:
+        - label: I removed personal data, credentials, and unrelated diagnostic information.
+          required: true

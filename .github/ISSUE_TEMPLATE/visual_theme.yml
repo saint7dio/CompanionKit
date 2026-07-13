@@ -1,0 +1,30 @@
+name: Visual theme proposal
+description: Propose an original CompanionKit theme that preserves Veya’s safety and state semantics.
+title: "[Theme]: "
+labels: [design]
+body:
+  - type: textarea
+    id: direction
+    attributes:
+      label: Visual direction
+      description: Describe palette, material, silhouette, motion, and how every semantic state remains readable.
+    validations:
+      required: true
+  - type: textarea
+    id: originality
+    attributes:
+      label: Originality and provenance
+      description: Explain asset ownership/licensing and how the design avoids copied mascots or franchise motifs.
+    validations:
+      required: true
+  - type: checkboxes
+    id: constraints
+    attributes:
+      label: Required constraints
+      options:
+        - label: The proposal is wingless and does not add animal anatomy to default Veya.
+          required: true
+        - label: It respects Reduce Motion and does not use color as the only state signal.
+          required: true
+        - label: It does not change action safety, permissions, or deterministic execution.
+          required: true

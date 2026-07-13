@@ -1,0 +1,79 @@
+name: Bug report
+description: Report reproducible behavior that does not work as expected.
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve CompanionKit. Search for duplicates first.
+        Do not include credentials, personal files, private screenshots, or vulnerability details.
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What happened, and what did you expect instead?
+      placeholder: A concise description of the problem and expected behavior.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Provide the smallest reliable sequence, with personal information removed.
+      placeholder: |
+        1. Launch CompanionKit…
+        2. Choose…
+        3. Observe…
+    validations:
+      required: true
+
+  - type: input
+    id: revision
+    attributes:
+      label: CompanionKit version or revision
+      description: Use a release version or commit hash; do not paste signing or account details.
+      placeholder: e.g. commit abc1234 or 0.1.0
+    validations:
+      required: true
+
+  - type: input
+    id: macos
+    attributes:
+      label: macOS version and Mac architecture
+      placeholder: e.g. macOS 15.4, Apple silicon
+    validations:
+      required: true
+
+  - type: dropdown
+    id: permissions
+    attributes:
+      label: Relevant permission state
+      description: Select the closest answer; do not upload privacy database files.
+      options:
+        - No optional permission appears relevant
+        - Permission was granted
+        - Permission was denied
+        - Not sure
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Additional context
+      description: Add sanitized logs, screenshots, or patterns such as frequency and multi-display setup.
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I searched existing issues for this behavior.
+          required: true
+        - label: I removed credentials and personal or security-sensitive information.
+          required: true
+        - label: This is not a vulnerability report; I will use SECURITY.md for those.
+          required: true
