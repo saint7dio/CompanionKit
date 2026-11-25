@@ -22,7 +22,7 @@ public versioned releases begin.
   launch-at-login service, and migration-safe local `UserDefaults` persistence.
 - Native `CompanionKit.xcodeproj`, shared app/test scheme, and a secondary Swift
   Package build path targeting macOS 14.
-- Thirty-six deterministic Swift Testing tests covering action policy, errors,
+- Thirty-seven deterministic Swift Testing tests covering action policy, errors,
   Veya state/theme/personality, settings migration, timers, notification denial,
   and position clamping.
 - GitHub Actions CI for SwiftPM and unsigned Xcode build/test checks, issue/PR
@@ -31,6 +31,8 @@ public versioned releases begin.
 
 ### Fixed
 
+- The countdown rejects unsupported durations and safely clears invalid
+  saved deadlines instead of failing while formatting the remaining time.
 - Reset All Settings now unregisters both enabled and pending-approval Login
   Item registrations.
 - Favorite-app execution resolves symlinks and revalidates the target as an

@@ -2,6 +2,10 @@
 
 > A friendly Mac companion for everyday actions.
 
+<img src="docs/assets/screenshots/timer-running.png" alt="CompanionKit action menu showing the five-minute countdown and Cancel Timer button" width="360">
+
+[Watch the timer walkthrough](docs/assets/screenshots/timer-walkthrough.gif)
+
 CompanionKit is an open-source native macOS project exploring a small,
 customizable desktop pet as an approachable interface to deterministic Mac
 actions. The intended experience is calm, transparent, local-first, and useful
@@ -41,7 +45,7 @@ and release validation remains.
 - local settings for name, size, Ethereal color, aura, particles, personality,
   motion, appearance, and shortcuts;
 - Veya-focused onboarding and contextual permission explanations;
-- transparent errors, 36 deterministic tests, and no simulated success.
+- transparent errors, 37 deterministic tests, and no simulated success.
 
 Actions open Finder, Downloads, Documents, Desktop, Applications, System
 Settings, or a selected app; show the macOS screenshot interface; control volume
@@ -61,9 +65,9 @@ without documented verification.
 
 ![Original CompanionKit app icon](docs/assets/companionkit-icon.svg)
 
-The onboarding, pet, action popover, and Settings window have received an
-initial local visual/accessibility-tree smoke test. A full product screenshot
-and short demo remain to be captured from the authoritative Xcode build.
+The screenshot and animated walkthrough at the top of this page use frames
+from a locally built, unsigned Xcode developer preview. They show Veya's
+action menu, selection of the five-minute preset, and the running countdown.
 
 ## Requirements
 

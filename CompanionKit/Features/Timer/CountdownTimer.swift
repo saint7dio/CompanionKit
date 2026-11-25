@@ -14,7 +14,7 @@ struct CountdownSnapshot: Equatable, Sendable {
     var remaining: TimeInterval = 0
 
     var formattedRemaining: String {
-        let total = max(0, Int(remaining.rounded(.up)))
+        let total = max(0, Int(exactly: remaining.rounded(.up)) ?? 0)
         let hours = total / 3_600
         let minutes = (total % 3_600) / 60
         let seconds = total % 60
@@ -31,13 +31,16 @@ struct CountdownStateMachine: Sendable {
         guard duration > 0 else {
             throw CompanionError.invalidConfiguration("Timer duration must be greater than zero.")
         }
+        guard Int(exactly: duration.rounded(.up)) != nil else {
+            throw CompanionError.invalidConfiguration("Timer duration is outside the supported range.")
+        }
         let endDate = now.addingTimeInterval(duration)
         snapshot = CountdownSnapshot(status: .running, endDate: endDate, remaining: duration)
     }
 
     mutating func restore(endDate: Date, now: Date) {
         let remaining = endDate.timeIntervalSince(now)
-        snapshot = remaining > 0
+        snapshot = remaining > 0 && Int(exactly: remaining.rounded(.up)) != nil
             ? CountdownSnapshot(status: .running, endDate: endDate, remaining: remaining)
             : CountdownSnapshot(status: .completed, endDate: nil, remaining: 0)
     }
@@ -46,7 +49,7 @@ struct CountdownStateMachine: Sendable {
     mutating func refresh(now: Date) -> Bool {
         guard snapshot.status == .running, let endDate = snapshot.endDate else { return false }
         let remaining = endDate.timeIntervalSince(now)
-        if remaining <= 0 {
+        if remaining <= 0 || Int(exactly: remaining.rounded(.up)) == nil {
             snapshot = CountdownSnapshot(status: .completed, endDate: nil, remaining: 0)
             return true
         }

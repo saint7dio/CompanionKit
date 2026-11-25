@@ -36,6 +36,23 @@ struct CountdownStateMachineTests {
     }
 
     @Test
+    func testUnsupportedDurationsCannotCreateOrRestoreATimer() {
+        for duration in [TimeInterval.infinity, TimeInterval.greatestFiniteMagnitude] {
+            var machine = CountdownStateMachine()
+
+            #expect(throws: CompanionError.self) {
+                try machine.start(duration: duration, now: now)
+            }
+            #expect(machine.snapshot == CountdownSnapshot())
+
+            machine.restore(endDate: now.addingTimeInterval(duration), now: now)
+            #expect(machine.snapshot.status == .completed)
+            #expect(machine.snapshot.endDate == nil)
+        }
+        #expect(CountdownSnapshot(remaining: .infinity).formattedRemaining == "00:00")
+    }
+
+    @Test
     func testRefreshUpdatesRemainingThenCompletesAtEndDate() throws {
         var machine = CountdownStateMachine()
         try machine.start(duration: 120, now: now)
