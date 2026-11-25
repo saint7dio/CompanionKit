@@ -11,6 +11,16 @@ The included default companion is **Veya**, an original, wingless Ethereal
 soul-orb rendered procedurally with SwiftUI. Veya can be renamed at any time;
 the safe deterministic action engine remains the functional core.
 
+## Maintainer and design
+
+Denis Zlatanovic maintains CompanionKit as an independent macOS project.
+The design keeps the SwiftUI interface separate from the action registry and
+macOS service adapters. The registry describes when an action is available
+and whether it needs confirmation. Injected services let tests exercise
+failed or denied actions without changing the developer's Mac.
+
+[Explore the architecture and diagrams](docs/ARCHITECTURE.md).
+
 ## Project status
 
 **Pre-release developer preview.** The native app, deterministic action set,
@@ -96,7 +106,7 @@ profiles scale only visual timing and intensity—never action safety.
 An action registry is the intended boundary between presentation and
 execution. It makes availability, required capabilities, confirmation policy,
 structured results, and future extensions visible and testable. See
-`docs/ARCHITECTURE.md` when present for implementation-specific details.
+[the architecture documentation](docs/ARCHITECTURE.md) for implementation details.
 
 ## Permissions
 
